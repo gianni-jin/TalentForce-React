@@ -97,8 +97,9 @@ public class EmployeeApiController {
         Employee employee = employeeRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
 
-        Department department = departmentRepository.findById(employeeDetails.getDepartment().getDepartmentId())
-                .orElseThrow(() -> new ResourceNotFoundException("Department not exist with id :" + employeeDetails.getDepartment().getDepartmentId()));
+        Long departmentId = employeeDetails.getDepartment().getDepartmentId();
+        Department department = departmentRepository.findById(departmentId)
+                .orElseThrow(() -> new ResourceNotFoundException("Department not exist with id :" + departmentId));
 
         employee.setFirstName(employeeDetails.getFirstName());
         employee.setLastName(employeeDetails.getLastName());
@@ -106,6 +107,11 @@ public class EmployeeApiController {
         employee.setGender(employeeDetails.getGender());
         employee.setLocation(employeeDetails.getLocation());
         employee.setEmail(employeeDetails.getEmail());
+        employee.setLeaveDaysLeft(employeeDetails.getLeaveDaysLeft());
+        employee.setContractType(employeeDetails.getContractType());
+        employee.setSalary(employeeDetails.getSalary());
+        employee.setHireDate(employeeDetails.getHireDate());
+        employee.setEmploymentStatus(employeeDetails.getEmploymentStatus());
         employee.setDepartment(department);
 
         Employee updatedEmployee = employeeRepository.save(employee);

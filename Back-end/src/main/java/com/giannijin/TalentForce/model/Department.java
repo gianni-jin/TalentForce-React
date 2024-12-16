@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+@Getter
 @ToString
 @Entity
 @NoArgsConstructor
@@ -24,15 +25,16 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty("departmentId")
     @Column (name = "departmentId")
-    @Getter @Setter private Long departmentId;
+    @Setter private Long departmentId;
 
 
     @Column (name = "name")
-    @Getter @Setter private String name;
+    @Setter private String name;
 
 
 
-    @OneToMany(mappedBy = "department", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+    @JsonProperty("employees")
     private List<Employee> employees = new ArrayList<>();
     public void addEmployee(Employee employee) {
         this.employees.add(employee);
@@ -45,7 +47,4 @@ public class Department {
     }
 
 
-    public List<Employee> getEmployees() {
-        return employees;
-    }
 }

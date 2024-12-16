@@ -12,10 +12,11 @@ import lombok.*;
 
 import java.math.BigDecimal;
 
+
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "employeeId")
-@Entity
+        property = "employeeId"
+)@Entity
 @Table(name = "tbl_employee")
 @Getter
 @Setter
@@ -68,8 +69,9 @@ public class Employee {
     @Column(name = "employment_status")
     private EmploymentStatus employmentStatus;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @ManyToOne
     @JoinColumn(name = "department_id")
+    @JsonProperty("department")
     private Department department;
 
     public void setDepartment(Department department) {
