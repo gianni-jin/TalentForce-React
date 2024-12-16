@@ -53,19 +53,6 @@ TalentForce ensures **clean architecture**, modern UI/UX design, and seamless in
 
 ---
 
-## Screenshots
-
-### Employee List Page
-![Employee List](./path-to-your-employee-list-image.png)
-
-### Department List Page
-![Department List](./path-to-your-department-list-image.png)
-
-### Employees in Department
-![Employees in Department](./path-to-your-department-employees-image.png)
-
----
-
 ## Database Schema
 
 Here is a simple schema overview:
